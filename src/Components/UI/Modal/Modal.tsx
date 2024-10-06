@@ -1,13 +1,28 @@
 import Backdrop from '../Backdrop/Backdrop.tsx';
 import * as React from 'react';
+import Buttons from '../Buttons/Buttons.tsx';
 
 interface Props extends React.PropsWithChildren {
   show: boolean;
-  title?: string;
+  title: string;
   onClose: () => void;
 }
 
 const Modal: React.FC<Props> = ({show, title, children, onClose}) => {
+  const buttons = [
+    {type: 'primary', label: 'Continue', onClick: () => console.log('clicked continue')},
+    {type: 'danger', label: 'Close', onClick: () => console.log('clicked cancel')}
+  ];
+
+  const buttonClick = (type: string) => {
+    if (type === 'primary') {
+      alert('You clicked continue!');
+    } else {
+      console.log('You clicked cancel!');
+      onClose();
+    }
+  };
+
   return (
     <>
       <Backdrop show={show} onClose={onClose}/>
@@ -27,6 +42,9 @@ const Modal: React.FC<Props> = ({show, title, children, onClose}) => {
             </div>
             <div className="p-4">
               {children}
+            </div>
+            <div className="modal-footer border">
+              <Buttons buttons={buttons} onClick={buttonClick}/>
             </div>
           </div>
         </div>
