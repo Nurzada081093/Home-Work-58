@@ -5,12 +5,12 @@ interface Props {
   onClose: () => void;
 }
 
-const Backdrop: React.FC<Props> = ({show, onClose}) => {
+const Backdrop: React.FC<Props> = ({ show, onClose }) => {
   return (
     <div
       onClick={() => onClose}
       className="modal-backdrop show"
-      style={{display: show ? 'block' : 'none'}}
+      style={{ display: show ? "block" : "none" }}
     />
   );
 };
